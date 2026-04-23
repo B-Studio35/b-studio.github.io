@@ -3,152 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>B Studio</title>
+    <title>B Studio | Geleceği Kodla</title>
     <style>
-        /* Genel Ayarlar */
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #121212; color: #ffffff; line-height: 1.6; overflow-x: hidden; }
+        /* Modern Reset ve Temel Ayarlar */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+        body { background-color: #050505; color: #ededed; overflow-x: hidden; }
 
-        /* Üst Menü (Navbar) - Microsoft Tarzı */
-        header { 
-            background-color: rgba(20, 20, 20, 0.95); 
-            padding: 15px 50px; 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            border-bottom: 1px solid #333; 
-            position: sticky; 
-            top: 0; 
-            z-index: 1000;
-            backdrop-filter: blur(10px);
+        /* Arkadaki Mavi/Mor Işık Hüzmesi (Glow Efekti) */
+        .glow-bg {
+            position: absolute; top: -20%; left: 50%; transform: translateX(-50%);
+            width: 70vw; height: 60vh;
+            background: radial-gradient(circle, rgba(0, 112, 243, 0.15) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1; filter: blur(60px);
         }
-        .logo { font-size: 24px; font-weight: 800; color: #0078d4; text-decoration: none; letter-spacing: 2px; }
-        nav ul { list-style: none; display: flex; align-items: center; gap: 30px; }
-        nav ul li { position: relative; padding: 10px 0; }
-        nav ul li a { color: #e0e0e0; text-decoration: none; font-size: 15px; font-weight: 500; transition: color 0.2s; }
-        nav ul li a:hover { color: #0078d4; }
 
-        /* Açılır Menü (Apps Kısmı) */
-        .dropdown-menu { 
-            display: none; 
-            position: absolute; 
-            top: 100%; 
-            left: -20px; 
-            background-color: #1a1a1a; 
-            min-width: 220px; 
-            border: 1px solid #333; 
-            border-radius: 6px; 
-            box-shadow: 0 8px 24px rgba(0,0,0,0.8);
-            overflow: hidden;
+        /* Cam Efektli (Glassmorphism) Üst Menü */
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 20px 5%; background: rgba(5, 5, 5, 0.6);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            position: fixed; width: 100%; top: 0; z-index: 100;
         }
-        nav ul li:hover .dropdown-menu { display: block; animation: fadeIn 0.3s ease; }
-        .dropdown-menu li { padding: 0; border-bottom: 1px solid #2a2a2a; }
-        .dropdown-menu li:last-child { border-bottom: none; }
-        .dropdown-menu li a { display: block; padding: 15px 20px; font-size: 14px; }
-        .dropdown-menu li a:hover { background-color: #2a2a2a; color: #fff; }
-
-        /* Animasyon */
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        .logo { font-size: 22px; font-weight: 800; color: #fff; text-decoration: none; letter-spacing: 1px; }
+        .logo span { color: #0070f3; } /* B Studio'nun B'si veya Studio'su farklı renk */
+        
+        nav ul { list-style: none; display: flex; gap: 35px; }
+        nav ul li a { color: #888; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.3s; }
+        nav ul li a:hover { color: #fff; }
 
         /* Ana Ekran (Hero Section) */
-        .hero { 
-            min-height: 80vh; 
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center; 
-            text-align: center; 
-            background: radial-gradient(circle at center, #1e1e1e 0%, #121212 100%);
+        .hero {
+            height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
             padding: 0 20px;
         }
-        .hero h1 { font-size: 4.5rem; font-weight: bold; margin-bottom: 20px; letter-spacing: -1px; }
-        .hero h1 span { color: #0078d4; }
-        .hero p { font-size: 1.2rem; color: #aaaaaa; max-width: 600px; margin-bottom: 40px; }
-        
-        .btn { 
-            background-color: #0078d4; 
-            color: white; 
-            padding: 16px 40px; 
-            text-decoration: none; 
-            border-radius: 4px; 
-            font-size: 1.1rem;
-            font-weight: 600; 
-            transition: all 0.3s ease; 
+        .tagline {
+            font-size: 13px; text-transform: uppercase; letter-spacing: 4px;
+            color: #0070f3; margin-bottom: 20px; font-weight: 600;
         }
-        .btn:hover { background-color: #005a9e; box-shadow: 0 0 20px rgba(0, 120, 212, 0.4); transform: translateY(-2px); }
-
-        /* Hakkımızda Bölümü */
-        .about { padding: 100px 50px; background-color: #181818; text-align: center; }
-        .about h2 { font-size: 2.5rem; color: #ffffff; margin-bottom: 30px; }
-        .about .content-box { 
-            max-width: 800px; 
-            margin: 0 auto; 
-            background-color: #222; 
-            padding: 40px; 
-            border-radius: 8px; 
-            border: 1px solid #333;
+        .hero h1 {
+            font-size: 5rem; font-weight: 800; line-height: 1.1;
+            background: linear-gradient(to bottom right, #ffffff, #666666);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            margin-bottom: 25px; letter-spacing: -2px;
         }
-        .about p { font-size: 1.1rem; color: #cccccc; line-height: 1.8; margin-bottom: 20px; }
-        .about p:last-child { margin-bottom: 0; }
+        .hero p {
+            font-size: 1.2rem; color: #888; max-width: 600px;
+            margin-bottom: 40px; line-height: 1.6;
+        }
 
-        /* Footer */
-        footer { text-align: center; padding: 30px; background-color: #0f0f0f; color: #666; font-size: 0.9rem; border-top: 1px solid #222; }
+        /* Butonlar - Apple/Vercel Tarzı */
+        .btn-group { display: flex; gap: 20px; }
+        .btn {
+            padding: 15px 30px; border-radius: 8px; font-size: 15px; font-weight: 600;
+            text-decoration: none; transition: all 0.2s ease; cursor: pointer;
+        }
+        .btn-primary { background: #ffffff; color: #000000; border: 1px solid #ffffff; box-shadow: 0 4px 14px 0 rgba(255,255,255,0.1); }
+        .btn-primary:hover { background: #e0e0e0; transform: translateY(-2px); }
+        .btn-secondary { background: transparent; color: #ffffff; border: 1px solid rgba(255,255,255,0.2); }
+        .btn-secondary:hover { border-color: #ffffff; background: rgba(255,255,255,0.05); transform: translateY(-2px); }
+
+        /* Projeler Grid Yapısı (Uygulamalar) */
+        .projects { 
+            padding: 100px 5%; max-width: 1100px; margin: 0 auto; 
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; 
+        }
+        .card {
+            background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05);
+            padding: 40px; border-radius: 16px; transition: all 0.3s ease;
+            text-align: left;
+        }
+        .card:hover { transform: translateY(-5px); background: rgba(255,255,255,0.04); border-color: rgba(0, 112, 243, 0.4); }
+        .card h3 { font-size: 22px; color: #fff; margin-bottom: 15px; display: flex; align-items: center; justify-content: space-between; }
+        .card h3 span { font-size: 12px; background: rgba(0, 112, 243, 0.2); color: #0070f3; padding: 4px 10px; border-radius: 20px; font-weight: 500; }
+        .card p { color: #888; font-size: 15px; line-height: 1.6; }
     </style>
 </head>
 <body>
 
+    <div class="glow-bg"></div>
+
     <header>
-        <a href="#" class="logo">B STUDIO</a>
+        <a href="#" class="logo">B<span>Studio</span></a>
         <nav>
             <ul>
-                <li><a href="#">Ana Sayfa</a></li>
-                <li>
-                    <a href="#">Uygulamalar (Apps) ▾</a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">🚀 B Updater (Yayında)</a></li>
-                        <li><a href="#">💻 B OS (Yakında)</a></li>
-                        <li><a href="#">🚗 B Mods (Geliştirme Aşamasında)</a></li>
-                    </ul>
-                </li>
-                <li><a href="#about">Hakkımızda</a></li>
-                <li><a href="#">İletişim</a></li>
+                <li><a href="#projeler">Yazılımlar</a></li>
+                <li><a href="#hakkinda">Hakkımızda</a></li>
+                <li><a href="https://github.com/b-studio35" target="_blank">GitHub</a></li>
             </ul>
         </nav>
     </header>
 
     <section class="hero">
-        <h1>Sınırları <span>Kaldır.</span></h1>
-        <p>B Studio; yenilikçi yazılım projeleri, gelişmiş simülasyon modları ve özel sistem çözümleri sunan yeni nesil geliştirici platformudur.</p>
-        <a href="#" class="btn" id="downloadBtn">B UPDATER İNDİR (v1.0)</a>
-    </section>
-
-    <section class="about" id="about">
-        <h2>Neden B Studio?</h2>
-        <div class="content-box">
-            <p>B Studio olarak sıradan yazılımların ötesine geçmeyi hedefliyoruz. Amacımız, kullanıcılara sadece bir program değil, pürüzsüz ve optimize edilmiş bir "deneyim" sunmaktır.</p>
-            <p>Geliştirmekte olduğumuz web tabanlı işletim sistemi simülasyonu <strong>B OS</strong>'tan, oyun dünyasındaki limitleri zorlayan ultra gerçekçi modifikasyon projelerine kadar her detayda performansı ve şık tasarımı ön planda tutuyoruz. Geleceğin araçlarını bugünden kodluyoruz.</p>
+        <div class="tagline">Yeni Nesil Geliştirici Stüdyosu</div>
+        <h1>Sınırları <br>Yeniden Çiz.</h1>
+        <p>B Studio; pürüzsüz arayüzler, bağımsız yazılım mimarileri ve yüksek performanslı sistem araçları geliştiren bir teknoloji merkezidir.</p>
+        
+        <div class="btn-group">
+            <a href="#projeler" class="btn btn-primary">Projeleri Keşfet</a>
+            <a href="#" class="btn btn-secondary">B OS Hakkında</a>
         </div>
     </section>
 
-    <footer>
-        &copy; 2026 B Studio. Tüm kodlar ve tasarımlar özenle hazırlanmıştır.
-    </footer>
+    <section class="projects" id="projeler">
+        <div class="card">
+            <h3>B OS <span>Geliştiriliyor</span></h3>
+            <p>Tarayıcı üzerinden çalışan, ultra hafif ve modern web tabanlı işletim sistemi. Sadece bir arayüz değil, eksiksiz bir dijital çalışma alanı.</p>
+        </div>
+        
+        <div class="card">
+            <h3>B Updater <span>Yayında</span></h3>
+            <p>Sistem ve yazılım paketlerini saniyeler içinde senkronize eden, hafif ve güvenilir sürüm yönetim aracı. Hızlı, güvenli, optimize.</p>
+        </div>
+    </section>
 
-    <script>
-        const btn = document.getElementById('downloadBtn');
-        btn.addEventListener('click', function(e) {
-            if(this.getAttribute('href') === "#") {
-                e.preventDefault();
-                const originalText = this.innerHTML;
-                this.innerHTML = "SİSTEM BAĞLANTISI KURULUYOR...";
-                this.style.backgroundColor = "#ff8c00"; // Turuncu uyarı rengi
-                
-                setTimeout(() => {
-                    this.innerHTML = originalText;
-                    this.style.backgroundColor = "#0078d4";
-                }, 2500);
-            }
-        });
-    </script>
 </body>
 </html>
