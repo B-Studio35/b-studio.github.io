@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>B Studio | Projeler</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #050505; color: #fff; padding: 40px 5%; }
+        
+        .header { margin-bottom: 50px; text-align: left; }
+        .header a { color: #888; text-decoration: none; font-size: 14px; transition: 0.3s; }
+        .header a:hover { color: #0070f3; }
+        .header h1 { font-size: 2.5rem; margin-top: 20px; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            background: #111;
+            border: 1px solid #222;
+            padding: 30px;
+            border-radius: 12px;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            border-color: #0070f3;
+            transform: translateY(-5px);
+            background: #161616;
+        }
+
+        .status-tag {
+            font-size: 10px;
+            background: rgba(0, 112, 243, 0.2);
+            color: #0070f3;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        h2 { margin: 15px 0 10px 0; font-size: 20px; }
+        p { color: #888; font-size: 14px; line-height: 1.6; }
+
+        .btn-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            border-bottom: 1px solid #0070f3;
+            padding-bottom: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <a href="/">← Ana Sayfaya Dön</a>
+        <h1>Projelerimiz</h1>
+    </div>
+
+    <div class="grid">
+        <div class="project-card">
+            <span class="status-tag">Geliştiriliyor</span>
+            <h2>B OS</h2>
+            <p>Web tabanlı, modern ve minimalist bir işletim sistemi simülasyonu. Kullanıcı deneyimini tarayıcıya taşıyoruz.</p>
+            <a href="/b-os/" class="btn-link">Detayları Gör</a>
+        </div>
+
+        <div class="project-card">
+            <span class="status-tag">Yayında</span>
+            <h2>B Updater</h2>
+            <p>Yazılım güncellemelerini ve dosya senkronizasyonunu yöneten hızlı, güvenli bir masaüstü aracı.</p>
+            <a href="#" class="btn-link">İndir (v1.0)</a>
+        </div>
+    </div>
+
+</body>
+</html>
